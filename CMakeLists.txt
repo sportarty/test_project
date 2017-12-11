@@ -37,6 +37,7 @@ set(HEADERS inc/endpoint.h
             inc/tcp_slave_connection.h
             inc/tcp_master_connection.h
             inc/types.h
+            inc/endpoint_traits.h
             )
 
 aux_source_directory( src TEST_PROJECT_SRC )
