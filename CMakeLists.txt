@@ -26,8 +26,21 @@ set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build/bin )
 
 project( ${PROJECT} )
 
-include_directories( ../inc )
+find_package( Threads )
 
-aux_source_directory( ../src TEST_PROJECT_SRC )
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
-add_executable( ${PROJECT} ${TEST_PROJECT_SRC} )
+set(HEADERS inc/endpoint.h
+            inc/endpoint_ipv4.h
+            inc/master_connection.h
+            inc/slave_connection.h
+            inc/tcp_slave_connection.h
+            inc/tcp_master_connection.h
+            inc/types.h
+            )
+
+aux_source_directory( src TEST_PROJECT_SRC )
+
+add_executable( ${PROJECT} ${TEST_PROJECT_SRC} ${HEADERS})
+
+target_link_libraries( ${PROJECT} pthread )
